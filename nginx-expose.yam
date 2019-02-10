@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-rs-nodeport-service
+spec:
+  type: NodePort
+  externalIPs:
+  - 104.197.209.239 
+  ports:
+  - name: http
+    nodePort: 32081 # Listening port on Nodes
+    port: 81 # Listening port on ClusterIP
+    targetPort: 81 # Pods listening port
+    protocol: TCP
+  selector:
+    app: k8-service
